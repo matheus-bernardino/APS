@@ -9,12 +9,13 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+	<environment exclude="Development">
+		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+		<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+	</environment>
     <style>
         #img {
             width: 30px;
@@ -24,25 +25,25 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default @*navbar-inverse*@ navbar-expand-md navbar-fixed-top" style="background-color: #c66; font-family: Fredericka the Great, cursive">
+    <nav class="navbar navbar-default navbar-expand-md navbar-fixed-top" style="background-color: #c66;">
         <div class="navbar-header">
-            <a class="navbar-brand navbar-left" href="#" style="color: black">
+            <a id="logo" class="navbar-brand navbar-left" href="#" style="color: black">
                 <span><img src="images\logo.png" id="img" /></span>
-                Bookaholics
+				<h4 style="font-family: Fredericka the Great, cursive;" id="name">Bookaholics</h4>
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+				<span class="icon-bar"></span>
             </button>
         </div>
         <div class="navbar-collapse collapse pull-right">
             @await Html.PartialAsync("_LoginPartial")
             <ul class="nav navbar-nav">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                @*<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
             </ul>
         </div>
     </nav>
@@ -50,7 +51,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - APS</p>
+            <p>2018 - APS</p>
         </footer>
     </div>
 
@@ -75,6 +76,6 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
-    @*@RenderSection("Scripts", required: false)*@
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

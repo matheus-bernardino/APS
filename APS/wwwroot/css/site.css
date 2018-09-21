@@ -35,7 +35,24 @@
 }
 
 #login{
-    position: relative;
-    left: 20px;
+    position: absolute;
+    right: -10px; 
+	top: 10px;
+}
+
+#logo{
+	position: relative;
+	right: 13px;
+}
+
+#name{
+	position: relative;
+	top: -35px;
+	left: 30px;
+	font-family: Fredericka the Great, cursive;
+}
+
+.navbar-default .navbar-brand {
+	font-family: Fredericka the Great, cursive;
 }
 

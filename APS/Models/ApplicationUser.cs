@@ -14,6 +14,7 @@ namespace APS.Models
 		public string Name { get; set; }
 		[Required]
 		public DateTime Birthdate { get; set; }
+        //public bool status { get; set; }
 		public virtual ICollection<Book> Books { get; set; }
 		public virtual Purchase Purchase { get; set; }
 
