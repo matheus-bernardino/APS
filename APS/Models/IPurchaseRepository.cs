@@ -7,6 +7,6 @@ namespace APS.Models
 {
 	public class IPurchaseRepository
 	{
-		IQueryable<Purchase> Purchases { get; set; }
+		IEnumerable<Purchase> Purchases { get; set; }
 	}
 }

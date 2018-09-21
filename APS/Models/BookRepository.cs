@@ -15,6 +15,6 @@ namespace APS.Models
 			_context = context;
 		}
 
-		public IQueryable<Book> Books => _context.Books;
+		public IEnumerable<Book> Books => _context.Books;
 	}
 }

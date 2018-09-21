@@ -16,7 +16,7 @@ namespace APS.Controllers
 
 		public HomeController(IBookRepository repository)
 		{
-			_repo = repository;
+   			_repo = repository;
 		}
 		public IActionResult Index()
 		{
@@ -27,6 +27,11 @@ namespace APS.Controllers
 		{
 			return View("DisplayCategory", _repo.Books.Where(p => p.Category == SelectedCategory));
 		}
+
+        public IActionResult DisplayBook(string SelectedBook)
+        {
+            return View("DisplayBook", _repo.Books.Where(p => p.Title == SelectedBook));
+        }
 
 		public IActionResult About()
 		{

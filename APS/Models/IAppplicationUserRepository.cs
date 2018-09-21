@@ -5,6 +5,6 @@ namespace APS.Models
 {
 	public interface IApplicationUserRepository
 	{
-		 IQueryable<ApplicationUser> ApplicationUsers { get; }
+		 IEnumerable<ApplicationUser> ApplicationUsers { get; }
 	}
 }

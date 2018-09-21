@@ -5,6 +5,6 @@ namespace APS.Models
 {
 	public interface IBookRepository
 	{
-		IQueryable<Book> Books { get; }
+		IEnumerable<Book> Books { get; }
 	}
 }

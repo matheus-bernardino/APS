@@ -12,6 +12,6 @@ namespace APS.Models
 			_context = context;
 		}
 
-		public IQueryable<ApplicationUser> ApplicationUsers => throw new System.NotImplementedException();
+		public IEnumerable<ApplicationUser> ApplicationUsers => throw new System.NotImplementedException();
 	}
 }
