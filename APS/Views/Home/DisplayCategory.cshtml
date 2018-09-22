@@ -1,0 +1,9 @@
+﻿@model IEnumerable<APS.Models.Book>
+<body>
+	<div>
+		@foreach(var item in Model)
+		{
+			<a asp-controller="Home" asp-action="DisplayBook" asp-route-SelectedBook="@item.Title"><p>@item.Title</p></a>
+		}
+	</div>
+</body>
