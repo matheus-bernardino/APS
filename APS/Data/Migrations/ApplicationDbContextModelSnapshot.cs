@@ -86,8 +86,13 @@ namespace APS.Data.Migrations
                     b.Property<string>("Category")
                         .IsRequired();
 
+                    b.Property<string>("Images")
+                        .IsRequired();
+
                     b.Property<string>("PublishingCompany")
                         .IsRequired();
+
+                    b.Property<int>("Quantity");
 
                     b.Property<string>("Title")
                         .IsRequired();
