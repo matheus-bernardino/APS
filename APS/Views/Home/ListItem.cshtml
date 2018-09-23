@@ -4,30 +4,54 @@
 	<div class="container-fluid">
         <div class="row">
             @*Adicionei o padding-block-end: 100% que a kilvia tinha colocado no dela*@
-            <div class="col-sm-2" style="background-color: #c66; padding-block-end: 100%">
-                <ul>
+            <div class="col-sm-2" id="sidebar" style="background-color: #c66;">
+                <h3 style="color: white"><strong>Categories</strong></h3>
+                <ul class="list-group">
                     @foreach (var category in Model)
                     {
                         @*Inverti a ordem do <li> com o <a> pra consertar o link da categoria*@
-                        <li> <a asp-controller="Home" asp-action="DisplayCategory" asp-route-SelectedCategory="@category.Key">@category.Key</a></li>
+                        <li class="list-group-item" style="background-color: #c66"> <a style="color: white" asp-controller="Home" asp-action="DisplayCategory" asp-route-SelectedCategory="@category.Key">@category.Key</a></li>
                     }
                 </ul>
             </div>
-            <div class="col-sm-10">
-                <label>Categorias</label>
+            <div class="col-sm-10" style="margin-top: 10px">
+                <label>Categories</label>
                 @foreach (var category in Model)
                 {
                     <div>
-                        <a asp-controller="Home" asp-action="DisplayCategory" asp-route-SelectedCategory="@category.Key">@category.Key</a>
+                        <a class="btn btn-info btn-sm" style = "background-color: #c66" asp-controller="Home" asp-action="DisplayCategory" asp-route-SelectedCategory="@category.Key"><span class="glyphicon glyphicon-arrow-right"></span> @category.Key</a>
                     </div>
                     <div class="row">
+                        <!--<div class="panel panel-default">-->
+                        <!--<div class="panel-body">-->
                         @foreach (var book in category.AsEnumerable().Take(3))
                         {
                             <div class="col-sm-4">
-                                <p>@book.Title</p>
-                                <img src="@book.Images" width="180" height="270" />
+                                <div class="panel panel-default">
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <div class="panel-body">
+                                                @*<p>@book.Title</p>*@
+                                                <img src="@book.Images" width="160" height="250" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <strong>Title: </strong> @book.Title
+                                            <br />
+                                            <strong>Category: </strong> @book.Category
+                                            <br />
+                                            <strong>Publishing Company: </strong> @book.PublishingCompany
+                                            <br />
+                                            <strong>Price: </strong> @book.Value
+                                            <br />
+                                            <strong>Quantity in Stock: </strong> @book.Quantity
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         }
+                        <!--</div>-->
+                        <!--</div>-->
                     </div>
                 }
             </div>

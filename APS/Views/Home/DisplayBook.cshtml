@@ -1,7 +1,7 @@
 ﻿@model  IEnumerable<APS.Models.Book>
 
-@foreach(var item in Model)
+@foreach(var book in Model)
 {
-    <h1>@item.Title</h1>
-    <img src="@item.Images" width="180" height="270"/>
+    <h1>@book.Title</h1>
+    <img src="@book.Images" width="180" height="270"/>
 }

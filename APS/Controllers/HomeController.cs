@@ -25,8 +25,8 @@ namespace APS.Controllers
 
 		public IActionResult DisplayCategory(string SelectedCategory)
 		{
-            //decimal itemsInCategory = _repo.Books.GroupBy(p => p.Category == SelectedCategory).Count();
-            //int ItemsPerLine = (int) Math.Ceiling(itemsInCategory / 3);
+            decimal itemsInCategory = _repo.Books.GroupBy(p => p.Category == SelectedCategory).Count();
+            ViewBag.ItemsPerLine = (int) Math.Ceiling(itemsInCategory / 4);
 			return View("DisplayCategory", _repo.Books.Where(p => p.Category == SelectedCategory));
 		}
 
