@@ -2,34 +2,35 @@
 
 <body>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-2" id="filter">
-				<ul>
-					@foreach (var category in Model)
-					{
-						<a asp-controller="Home" asp-action="DisplayCategory" asp-route-SelectedCategory="@category.Key"><li>@category.Key</li></a>
-					}
-				</ul>
-			</div>
-			<div class="col-sm-10" id="filter">
-
-				<label id="label">Categorias</label>
-				@foreach (var category in Model)
-				{	
-					<div>
-						<a asp-controller="Home" asp-action="DisplayCategory" asp-route-SelectedCategory="@category.Key">@category.Key</a>
-					</div>
-					<div class="row">
-						@foreach (var book in category.AsEnumerable().Take(3))
-						{	
-							<div class="col-sm-4">
-								<p>@book.Title</p>
-                                <img src="@book.Images" width="180" height="270"/>
-							</div>
-						}
-					</div>
-				}
-			</div>
-		</div>
+        <div class="row">
+            @*Adicionei o padding-block-end: 100% que a kilvia tinha colocado no dela*@
+            <div class="col-sm-2" style="background-color: #c66; padding-block-end: 100%">
+                <ul>
+                    @foreach (var category in Model)
+                    {
+                        @*Inverti a ordem do <li> com o <a> pra consertar o link da categoria*@
+                        <li> <a asp-controller="Home" asp-action="DisplayCategory" asp-route-SelectedCategory="@category.Key">@category.Key</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="col-sm-10">
+                <label>Categorias</label>
+                @foreach (var category in Model)
+                {
+                    <div>
+                        <a asp-controller="Home" asp-action="DisplayCategory" asp-route-SelectedCategory="@category.Key">@category.Key</a>
+                    </div>
+                    <div class="row">
+                        @foreach (var book in category.AsEnumerable().Take(3))
+                        {
+                            <div class="col-sm-4">
+                                <p>@book.Title</p>
+                                <img src="@book.Images" width="180" height="270" />
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
 	</div>
 </body>
