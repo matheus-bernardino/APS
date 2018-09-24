@@ -163,6 +163,7 @@ namespace APS.Migrations
                 {
                     BookID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Images = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PublishingCompany = table.Column<string>(type: "nvarchar(max)", nullable: false),

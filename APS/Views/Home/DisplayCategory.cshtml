@@ -14,17 +14,19 @@
                                     <div class="col-sm-7">
                                         <a asp-action="DisplayBook" asp-route-SelectedBook="@book.Title"><img src="@book.Images" width="160" height="250"></a>
                                     </div>
-                                    <div class="col-sm-5">
-                                        <strong>Title: </strong> @book.Title
-                                        <br />
-                                        <strong>Category: </strong> @book.Category
-                                        <br />
-                                        <strong>Publishing Company: </strong> @book.PublishingCompany
-                                        <br />
-                                        <strong>Price: </strong> @book.Value
-                                        <br />
-                                        <strong>Quantity in Stock: </strong> @book.Quantity
-                                    </div>
+									<div class="col-sm-5">
+										<strong>Title: </strong> @book.Title
+										<br />
+										<strong>Title: </strong> @book.Author
+										<br />
+										<strong>Category: </strong> @book.Category
+										<br />
+										<strong>Publishing Company: </strong> @book.PublishingCompany
+										<br />
+										<strong>Price: </strong> @book.Value
+										<br />
+										<strong>Quantity in Stock: </strong> @book.Quantity
+									</div>
                                 </div>
                             </div>
                         </div>

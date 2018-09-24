@@ -30,12 +30,13 @@ namespace APS.Models
 
         public bool VerifyUserStatus(string email)
         {
-            var user = _context.Users.Where(p => p.Email == email).First();
-            if (user != null)
+            var user = _context.Users.Where(p => p.Email == email);
+
+            if (user.Count() > 0)
             {
-                return user.Status;
+                return user.First().Status;
             }
-            return false;
+            return true;
         }
 
     }

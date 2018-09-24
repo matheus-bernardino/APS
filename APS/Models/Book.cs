@@ -10,8 +10,8 @@ namespace APS.Models
 		public Guid BookID { get; set; }
 		[Required]
 		public string Title { get; set; }
-		//[Required]
-  //      public string Author { get; set; }
+		[Required]
+        public string Author { get; set; }
         [Required]
 		public string PublishingCompany { get; set; }
 		[Required]

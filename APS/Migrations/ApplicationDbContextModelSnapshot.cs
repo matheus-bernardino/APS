@@ -85,6 +85,9 @@ namespace APS.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
+                    b.Property<string>("Author")
+                        .IsRequired();
+
                     b.Property<string>("Category")
                         .IsRequired();
 

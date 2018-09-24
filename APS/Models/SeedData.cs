@@ -18,12 +18,19 @@ namespace APS.Models
 			if(!context.Books.Any())
 			{
 				context.Books.AddRange(
-					new Book { Title = "A Game of Thrones", PublishingCompany = "Bantam Books", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-game-of-thrones.jpg" },
-					new Book { Title = "A Clash of Kings", PublishingCompany = "Bantam Books", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-clash-of-kings.jpg" },
-					new Book { Title = "A Storm of Swords", PublishingCompany = "Bantam Books", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-storm-of-swords.jpg" },
-					new Book { Title = "A Feast for Crows", PublishingCompany = "Bantam Books", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-feast-for-crows.jpg" },
-					new Book { Title = "1984", PublishingCompany = "Secker & Warburg", Category = "Dystopian", Value = 40, Quantity = 1, Images = "\\images\\1984\\1984.jpg" },
-					new Book { Title = "Brave New World", PublishingCompany = "Chatto & Windus", Category = "Dystopian", Value = 40, Quantity = 1, Images = "\\images\\BNW\\brave-new-world.jpg" }
+					new Book { Title = "A Game of Thrones", Author = "George RR Martin", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-game-of-thrones.jpg" },
+					new Book { Title = "A Clash of Kings", Author = "George RR Martin", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-clash-of-kings.jpg" },
+					new Book { Title = "A Storm of Swords", Author = "George RR Martin", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-storm-of-swords.jpg" },
+					new Book { Title = "A Feast for Crows", Author = "George RR Martin", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-feast-for-crows.jpg" },
+                    new Book { Title = "A Dance with Dragons", Author = "George RR Martin", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\a-dance-with-dragons.jpg" },
+                    new Book { Title = "The winds of winter", Author = "George RR Martin", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\ASOIAF\\the-winds-of-winter.jpg" },
+                    new Book { Title = "The Fellowship of the Ring", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\\the-fellowship.jpg" },
+                    new Book { Title = "The Two Towers", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\\the-two-towers.jpg" },
+                    new Book { Title = "The Return of the King", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\\the-return.jpg" },
+                    new Book { Title = "The Hobbit", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\the-hobbit.jpg" },
+
+                    new Book { Title = "1984", Author = "George RR Martin", PublishingCompany = "Secker & Warburg", Category = "Dystopian", Value = 40, Quantity = 1, Images = "\\images\\1984\\1984.jpg" },
+					new Book { Title = "Brave New World", Author = "George RR Martin", PublishingCompany = "Chatto & Windus", Category = "Dystopian", Value = 40, Quantity = 1, Images = "\\images\\BNW\\brave-new-world.jpg" }
 					//new Book { Title = "Livro7", PublishingCompany = "Editora7", Category = "Gênero1", Value = 40 },
 					//new Book { Title = "Livro8", PublishingCompany = "Editora8", Category = "Gênero1", Value = 40 },
 					//new Book { Title = "Livro9", PublishingCompany = "Editora9", Category = "Gênero1", Value = 40 },
