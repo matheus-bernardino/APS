@@ -36,6 +36,7 @@ namespace APS
 			// Add application services.
 			services.AddTransient<IEmailSender, EmailSender>();
 			services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IApplicationUserRepository, ApplicationUserRepository>();
 			services.AddMvc();
 		}
 

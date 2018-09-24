@@ -23,5 +23,14 @@ namespace APS.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Insira um nome válido")]
+        public string Name { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [AgeValidation(ErrorMessage = "Permitido apenas para maiores de 16 anos")]
+        public DateTime Birthdate { get; set; }
+       
     }
 }
