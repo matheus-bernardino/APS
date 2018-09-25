@@ -27,7 +27,7 @@ namespace APS.Models
                     new Book { Title = "The Fellowship of the Ring", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\\the-fellowship.jpg" },
                     new Book { Title = "The Two Towers", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\\the-two-towers.jpg" },
                     new Book { Title = "The Return of the King", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\\the-return.jpg" },
-                    new Book { Title = "The Hobbit", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\the-hobbit.jpg" },
+                    new Book { Title = "The Hobbit", Author = "JRR Tolkien", PublishingCompany = " HarperCollins", Category = "Epic Fantasy", Value = 40, Quantity = 1, Images = "\\images\\LOTR\\the-hobbit.jpg" },
 
                     new Book { Title = "1984", Author = "George RR Martin", PublishingCompany = "Secker & Warburg", Category = "Dystopian", Value = 40, Quantity = 1, Images = "\\images\\1984\\1984.jpg" },
 					new Book { Title = "Brave New World", Author = "George RR Martin", PublishingCompany = "Chatto & Windus", Category = "Dystopian", Value = 40, Quantity = 1, Images = "\\images\\BNW\\brave-new-world.jpg" }

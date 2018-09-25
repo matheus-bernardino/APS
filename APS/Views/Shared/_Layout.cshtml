@@ -19,11 +19,10 @@
 </head>
 <body>
     @*Teste de branch do git*@
-    @*Comentei o navbar pra tirar a linha depois do navbar*@
-    <nav class="@*navbar*@ navbar-default navbar-expand-md navbar-fixed-top" style="background-color: #c66">
+    <nav class="navbar navbar-default navbar-expand-md navbar-fixed-top" style="background-color: #c66; border: 0px">
         <div class="navbar-header">
             <a id="logo" class="navbar-brand navbar-left" href="#" style="color: black">
-                <span><img src="images\logo.png" style=" width: 30px; height: 30px" /></span>
+                <span><img src="~/images/logo.png" style=" width: 30px; height: 30px" /></span>
                 <h4 style="font-family: Fredericka the Great, cursive; font-size:30px" id="name">Bookaholics</h4>
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,9 +34,9 @@
         </div>
         <div class="navbar-collapse collapse pull-right">
             <ul class="nav navbar-nav">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index" style="color: black">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index" style="color: white">Início</a></li>
                 @*<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
             </ul>
             @await Html.PartialAsync("_LoginPartial")
         </div>
