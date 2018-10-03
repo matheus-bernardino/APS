@@ -4,7 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Bookaholics</title>
+    <link rel="shortcut icon" href="~/favicon.ico" type="favicon" />
     <link rel="shortcut icon" href="~/favicon.ico">
+
 
 
     <environment include="Development">
@@ -46,12 +48,12 @@
 
     @*Tirei o RenderBody da div pra não influenciar na largura das colunas com as categorias e o livros*@
     @RenderBody()
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color: #c66">
         <hr />
         <footer>
             <p>2018 - APS</p>
         </footer>
-    </div>
+    </div
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

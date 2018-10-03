@@ -3,7 +3,7 @@
 <body>
 	<div class="container-fluid">
         <div class="row">
-            <div class="col-sm-2" id="sidebar" style="background-color: #c66;">
+            <div class="col-sm-2" id="sidebar" style="background-color: #c66">
                 <h3 style="color: white"><strong>Categorias</strong></h3>
                 <ul class="list-group">
                     @foreach (var category in Model)
@@ -40,11 +40,11 @@
 											<br />
                                             <strong>Categoria: </strong> @book.Category
                                             <br />
-                                            <strong>Editora: </strong> @book.PublishingCompany
-                                            <br />
+                                            @*<strong>Editora: </strong> @book.PublishingCompany
+                                            <br />*@
                                             <strong>Preço: </strong> @book.Value
                                             <br />
-                                            <strong>Quantiade em estoque: </strong> @book.Quantity
+                                            @*<strong>Quantiade em estoque: </strong> @book.Quantity*@
                                         </div>
                                     </div>
                                 @*</div>*@
