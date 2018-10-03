@@ -25,6 +25,7 @@ namespace APS.Controllers
 		private readonly IEmailSender _emailSender;
 		private readonly ILogger _logger;
         private readonly IApplicationUserRepository _repository;
+        private readonly IBookRepository _bookRepository;
 		private readonly UrlEncoder _urlEncoder;
 
 		private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
@@ -35,7 +36,8 @@ namespace APS.Controllers
 		  IEmailSender emailSender,
 		  ILogger<ManageController> logger,
 		  UrlEncoder urlEncoder,
-          IApplicationUserRepository repository)
+          IApplicationUserRepository repository,
+          IBookRepository bookRepository)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
@@ -43,6 +45,7 @@ namespace APS.Controllers
 			_logger = logger;
 			_urlEncoder = urlEncoder;
             _repository = repository;
+            _bookRepository = bookRepository;
 		}
 
 		[TempData]
@@ -483,6 +486,20 @@ namespace APS.Controllers
                 _repository.DeactivateUser(new Guid(user.Id));
             }
            
+            return View(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult RegisterBook()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult RegisterBook(Book model)
+        {
+            _bookRepository.RegisterBook(model);
             return View(nameof(Index));
         }
 		#region Helpers

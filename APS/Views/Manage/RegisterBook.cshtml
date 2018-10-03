@@ -1,0 +1,51 @@
+﻿@model APS.Models.Book
+@{
+    ViewData["Title"] = "RegisterBook";
+}
+<h2>Cadastrar Livro</h2>
+<form asp-action="RegisterBook">
+    <fieldset>
+        <div class="col-md-2">
+            <label asp-for="Title">Título</label>
+            <br />
+            <label asp-for="Author">Autor</label>
+            <br />
+            <label asp-for="Category">Categoria</label>
+            <br />
+            <label asp-for="PublishingCompany">Editora</label>
+            <br />
+            <label asp-for="Value">Preço</label>
+        </div>
+        <div class="col-md-10" style="text-align:left">
+            <input asp-for="Title" placeholder="Título" />
+            <br />
+            <input asp-for="Author" placeholder="Autor" />
+            <br />
+            <input asp-for="Category" placeholder="Categoria" />
+            <br />
+            <input asp-for="PublishingCompany" placeholder="Editora" />
+            <br />
+            <input asp-for="Value" placeholder="Preço" />
+        </div>
+        @*<label asp-for="Title">Título</label>
+        <input asp-for="Title" placeholder="Título" />
+
+        <br />
+        <label asp-for="Author">Autor</label>
+        <input asp-for="Author" placeholder="Autor" />
+
+        <br />
+        <label asp-for="Category">Categoria</label>
+        <input asp-for="Category" placeholder="Categoria" />
+
+        <br />
+        <label asp-for="PublishingCompany">Editora</label>
+        <input asp-for="PublishingCompany" placeholder="Editora" />
+
+        <br />
+        <label asp-for="Value">Preço</label>
+        <input asp-for="Value" placeholder="Preço" />*@
+    </fieldset>
+    <input type="submit">
+</form>
+
