@@ -88,16 +88,18 @@ namespace APS.Migrations
                     b.Property<string>("Author")
                         .IsRequired();
 
+                    b.Property<bool>("BookStatus");
+
                     b.Property<string>("Category")
                         .IsRequired();
 
-                    b.Property<string>("Images")
-                        .IsRequired();
+                    b.Property<string>("Images");
 
                     b.Property<string>("PublishingCompany")
                         .IsRequired();
 
-                    b.Property<int>("Quantity");
+                    b.Property<int?>("Quantity")
+                        .IsRequired();
 
                     b.Property<string>("Title")
                         .IsRequired();

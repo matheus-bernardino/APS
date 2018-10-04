@@ -19,12 +19,12 @@ namespace APS.Models
 		[Required]
 		public decimal Value { get; set; }
         [Required]
-        public int Quantity { get; set; } = 1;
+        public int ?Quantity { get; set; }
         public string Images { get; set; } = "";
-        //public bool BookStatus { get; set; }
+        public bool BookStatus { get; set; } = true;
 
-		public virtual ApplicationUser ApplicationUser { get; set; }
-		public virtual Purchase Purchase { get; set; }
+		public ApplicationUser ApplicationUser { get; set; }
+		public Purchase Purchase { get; set; }
 
 
 	}

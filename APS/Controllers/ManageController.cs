@@ -478,7 +478,7 @@ namespace APS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Deactivate(Guid id, Deactivate model)
+        public async Task<IActionResult> Deactivate(Deactivate model)
         {
             var user = await _userManager.GetUserAsync(User);
             if (await _userManager.CheckPasswordAsync(user, model.Password))
@@ -501,6 +501,14 @@ namespace APS.Controllers
         {
             _bookRepository.RegisterBook(model);
             return View(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateBook()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            
+            return View(_bookRepository.Books.Select(p => p.Title));
         }
 		#region Helpers
 
