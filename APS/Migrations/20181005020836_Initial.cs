@@ -161,7 +161,7 @@ namespace APS.Migrations
                 name: "Books",
                 columns: table => new
                 {
-                    BookID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BookStatus = table.Column<bool>(type: "bit", nullable: false),
@@ -169,12 +169,13 @@ namespace APS.Migrations
                     Images = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PublishingCompany = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    SellerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Value = table.Column<decimal>(type: "decimal(18, 2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Books", x => x.BookID);
+                    table.PrimaryKey("PK_Books", x => x.BookId);
                     table.ForeignKey(
                         name: "FK_Books_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
@@ -187,25 +188,26 @@ namespace APS.Migrations
                 name: "Purchases",
                 columns: table => new
                 {
-                    PurchaseID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ApplicationUser = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Book = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    PurchaseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Purchases", x => x.PurchaseID);
+                    table.PrimaryKey("PK_Purchases", x => x.PurchaseId);
                     table.ForeignKey(
-                        name: "FK_Purchases_AspNetUsers_ApplicationUser",
-                        column: x => x.ApplicationUser,
+                        name: "FK_Purchases_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Purchases_Books_Book",
-                        column: x => x.Book,
+                        name: "FK_Purchases_Books_BookId",
+                        column: x => x.BookId,
                         principalTable: "Books",
-                        principalColumn: "BookID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "BookId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -253,18 +255,14 @@ namespace APS.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Purchases_ApplicationUser",
+                name: "IX_Purchases_ApplicationUserId",
                 table: "Purchases",
-                column: "ApplicationUser",
-                unique: true,
-                filter: "[ApplicationUser] IS NOT NULL");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Purchases_Book",
+                name: "IX_Purchases_BookId",
                 table: "Purchases",
-                column: "Book",
-                unique: true,
-                filter: "[Book] IS NOT NULL");
+                column: "BookId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

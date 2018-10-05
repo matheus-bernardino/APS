@@ -12,14 +12,12 @@ namespace APS.Models
     {
         [Required(ErrorMessage ="Insira um nome válido")]
         public string Name { get; set; }
-
         [Required]
         [AgeValidation(ErrorMessage ="Permitido apenas para maiores de 16 anos")]
 		public DateTime Birthdate { get; set; }
         public bool Status { get; set; } = true;
 
-		public virtual ICollection<Book> Books { get; set; }
-		public virtual Purchase Purchase { get; set; }
+		//public virtual Purchase Purchase { get; set; }
 
 	}
 }

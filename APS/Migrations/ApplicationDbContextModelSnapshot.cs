@@ -80,7 +80,7 @@ namespace APS.Migrations
 
             modelBuilder.Entity("APS.Models.Book", b =>
                 {
-                    b.Property<Guid>("BookID")
+                    b.Property<Guid>("BookId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ApplicationUserId");
@@ -98,15 +98,16 @@ namespace APS.Migrations
                     b.Property<string>("PublishingCompany")
                         .IsRequired();
 
-                    b.Property<int?>("Quantity")
-                        .IsRequired();
+                    b.Property<int>("Quantity");
+
+                    b.Property<Guid>("SellerId");
 
                     b.Property<string>("Title")
                         .IsRequired();
 
                     b.Property<decimal>("Value");
 
-                    b.HasKey("BookID");
+                    b.HasKey("BookId");
 
                     b.HasIndex("ApplicationUserId");
 
@@ -115,22 +116,20 @@ namespace APS.Migrations
 
             modelBuilder.Entity("APS.Models.Purchase", b =>
                 {
-                    b.Property<Guid>("PurchaseID")
+                    b.Property<Guid>("PurchaseId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUser");
+                    b.Property<string>("ApplicationUserId");
 
-                    b.Property<Guid?>("Book");
+                    b.Property<Guid>("BookId");
 
-                    b.HasKey("PurchaseID");
+                    b.Property<Guid>("BuyerId");
 
-                    b.HasIndex("ApplicationUser")
-                        .IsUnique()
-                        .HasFilter("[ApplicationUser] IS NOT NULL");
+                    b.HasKey("PurchaseId");
 
-                    b.HasIndex("Book")
-                        .IsUnique()
-                        .HasFilter("[Book] IS NOT NULL");
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("BookId");
 
                     b.ToTable("Purchases");
                 });
@@ -246,19 +245,20 @@ namespace APS.Migrations
             modelBuilder.Entity("APS.Models.Book", b =>
                 {
                     b.HasOne("APS.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("Books")
+                        .WithMany()
                         .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("APS.Models.Purchase", b =>
                 {
-                    b.HasOne("APS.Models.ApplicationUser", "Buyer")
-                        .WithOne("Purchase")
-                        .HasForeignKey("APS.Models.Purchase", "ApplicationUser");
+                    b.HasOne("APS.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("APS.Models.Book", "Item")
-                        .WithOne("Purchase")
-                        .HasForeignKey("APS.Models.Purchase", "Book");
+                    b.HasOne("APS.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

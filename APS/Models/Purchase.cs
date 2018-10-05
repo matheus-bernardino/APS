@@ -7,10 +7,10 @@ namespace APS.Models
 {
 	public class Purchase
 	{
-		public Guid PurchaseID { get; set; }
-		[ForeignKey("ApplicationUser")]
-		public virtual ApplicationUser Buyer { get; set; }
-		[ForeignKey("Book")]
-		public virtual Book Item { get; set; }
+		public Guid PurchaseId { get; set; }
+        public Guid BuyerId { get; set; }
+		public ApplicationUser ApplicationUser { get; set; }
+        public Guid BookId { get; set; }
+		public Book Book { get; set; }
 	}
 }
