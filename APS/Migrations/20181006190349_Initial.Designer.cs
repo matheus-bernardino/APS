@@ -11,7 +11,7 @@ using System;
 namespace APS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181005020836_Initial")]
+    [Migration("20181006190349_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
