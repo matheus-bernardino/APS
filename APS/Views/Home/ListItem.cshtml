@@ -34,16 +34,20 @@
                                             @*</div>*@
                                         </div>
                                         <div class="col-sm-5">
-                                            <strong>Título: </strong> @book.Title
-                                            <br />
-											<strong>Autor: </strong>@book.Author
-											<br />
-                                            <strong>Categoria: </strong> @book.Category
-                                            <br />
-                                            @*<strong>Editora: </strong> @book.PublishingCompany
-                                            <br />*@
-                                            <strong>Preço: </strong> @book.Value
-                                            <br />
+                                            <div class="row">
+                                                <strong>Título: </strong> @book.Title
+                                                <br />
+                                                <strong>Autor: </strong>@book.Author
+                                                <br />
+                                                <strong>Categoria: </strong> @book.Category
+                                                <br />
+                                                @*<strong>Editora: </strong> @book.PublishingCompany
+        <br />*@
+                                                <strong>Preço: </strong> @book.Value
+                                            </div>
+                                            <div class="row">
+                                                <a href="#" class="btn btn-warning text-center" style="position: absolute; top: 215px"><span class="glyphicon glyphicon-usd"></span> Comprar</a>
+                                            </div>
                                             @*<strong>Quantiade em estoque: </strong> @book.Quantity*@
                                         </div>
                                     </div>
