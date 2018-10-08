@@ -17,9 +17,25 @@ namespace APS.Models
 
         public void RegisterBook(Book book)
         {
+            book.InStock = book.InitialStock;
             _context.Books.Add(book);
             _context.UpdateRange();
             _context.SaveChanges();
+        }
+
+        public IEnumerable<Tuple<Book, int>> ListSoldBook(string userId)
+        {
+            List<Tuple<Book, int>> soldBooks = new List<Tuple<Book, int>>();
+            var books = _context.Books.Where(book => book.SellerId == userId);
+            foreach(var book in books)
+            {
+                if(book.InitialStock - book.InStock > 0)
+                {
+                    Tuple<Book, int> soldBook = new Tuple<Book, int>(book, book.InitialStock - book.InStock);
+                    soldBooks.Append(soldBook);
+                }
+            }
+            return soldBooks.AsEnumerable();
         }
 
 		public IEnumerable<Book> Books => _context.Books;

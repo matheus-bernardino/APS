@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Compra";
+}
+
+<div class="row">
+
+    @*<hr />*@
+    <div class="col-md-4 col-md-offset-4" style="border-left: solid; border-right: solid; border-left-width: 1px; border-right-width: 1px">
+        <h2>@ViewData["Title"]</h2>
+        <section>
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row" style="text-align: center">
+                    <label class="radio-inline"><input type="radio" name="card">Cartão de Crédito</label>
+                    <label class="radio-inline"><input type="radio" name="card">Cartão de Débito</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Rua</label>
+                            <input class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Numero</label>
+                            <input class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Login</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

@@ -19,11 +19,12 @@ namespace APS.Models
 		[Required]
 		public decimal Value { get; set; }
         [Required]
-        public int Quantity { get; set; }
+        public int InitialStock { get; set; }
+        public int InStock { get; set; }
         public string Images { get; set; } = "";
         public bool BookStatus { get; set; } = true;
 
-        public Guid SellerId { get; set; }
+        public string SellerId { get; set; }
 		public ApplicationUser ApplicationUser { get; set; }
 		//public Purchase Purchase { get; set; }
 

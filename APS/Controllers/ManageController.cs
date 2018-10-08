@@ -509,7 +509,15 @@ namespace APS.Controllers
         public async Task<IActionResult> UpdateBook()
         {
             var user = await _userManager.GetUserAsync(User);
-            return View(_bookRepository.Books.Where(p => p.SellerId == new Guid(user.Id)));
+            return View(_bookRepository.Books.Where(p => p.SellerId == user.Id));
+        }
+
+        [HttpGet]
+        public  async Task<IActionResult> ListSoldBook()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var books = _bookRepository.ListSoldBook(user.Id);
+            return View(books);
         }
 		#region Helpers
 

@@ -95,12 +95,14 @@ namespace APS.Migrations
 
                     b.Property<string>("Images");
 
+                    b.Property<int>("InStock");
+
+                    b.Property<int>("InitialStock");
+
                     b.Property<string>("PublishingCompany")
                         .IsRequired();
 
-                    b.Property<int>("Quantity");
-
-                    b.Property<Guid>("SellerId");
+                    b.Property<string>("SellerId");
 
                     b.Property<string>("Title")
                         .IsRequired();
@@ -121,9 +123,11 @@ namespace APS.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<Guid>("BookId");
+                    b.Property<Guid?>("BookId");
 
-                    b.Property<Guid>("BuyerId");
+                    b.Property<string>("BuyerId");
+
+                    b.Property<string>("ItemId");
 
                     b.HasKey("PurchaseId");
 
@@ -257,8 +261,7 @@ namespace APS.Migrations
 
                     b.HasOne("APS.Models.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BookId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

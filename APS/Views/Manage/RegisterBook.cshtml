@@ -8,21 +8,27 @@
     <fieldset>
         <label asp-for="Title">Título</label>
         <input asp-for="Title" placeholder="Título" />
+        <span asp-validation-for="Title" class="text-danger"></span>
         <br />
         <label asp-for="Author">Autor</label>
         <input asp-for="Author" placeholder="Autor" />
+        <span asp-validation-for="Author" class="text-danger"></span>
         <br />
         <label asp-for="Category">Categoria</label>
         <input asp-for="Category" placeholder="Categoria" />
+        <span asp-validation-for="Category" class="text-danger"></span>
         <br />
         <label asp-for="PublishingCompany">Editora</label>
         <input asp-for="PublishingCompany" placeholder="Editora" />
+        <span asp-validation-for="PublishingCompany" class="text-danger"></span>
         <br />
         <label asp-for="Value">Preço</label>
         <input asp-for="Value" placeholder="Preço" />
+        <span asp-validation-for="Value" class="text-danger"></span>
         <br />
-        <label asp-for="Quantity">Quantidade</label>
-        <input asp-for="Quantity" placeholder="Quantidade" />
+        <label asp-for="InitialStock">Quantidade</label>
+        <input asp-for="InitialStock" placeholder="Quantidade" />
+        <span asp-validation-for="InitialStock" class="text-danger"></span>
     </fieldset>
     <input type="submit">
 </form>

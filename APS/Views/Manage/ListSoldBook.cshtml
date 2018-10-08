@@ -1,4 +1,4 @@
-﻿@model IEnumerable<APS.Models.Book>
+﻿@model IEnumerable<Tuple<APS.Models.Book, int>>
 @{
     ViewData["Title"] = "ListSoldBook";
 }
@@ -6,6 +6,7 @@
 <h2>ListSoldBook</h2>
 @foreach(var book in Model)
 {
-    <p>@book.Title</p>
+    <p>@book.Item1.Title</p>
+    <p>@book.Item2</p>
 }
 
