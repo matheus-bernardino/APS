@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace APS.Models
@@ -8,5 +9,6 @@ namespace APS.Models
         IEnumerable<Book> Books { get; }
 
         void RegisterBook(Book book);
+        IEnumerable<Tuple<Book, int>> ListSoldBook(string userId);
     }
 }

@@ -167,9 +167,10 @@ namespace APS.Migrations
                     BookStatus = table.Column<bool>(type: "bit", nullable: false),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Images = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InStock = table.Column<int>(type: "int", nullable: false),
+                    InitialStock = table.Column<int>(type: "int", nullable: false),
                     PublishingCompany = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    SellerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SellerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Value = table.Column<decimal>(type: "decimal(18, 2)", nullable: false)
                 },
@@ -190,8 +191,9 @@ namespace APS.Migrations
                 {
                     PurchaseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    BuyerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ItemId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -207,7 +209,7 @@ namespace APS.Migrations
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "BookId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
