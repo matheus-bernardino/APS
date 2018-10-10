@@ -193,7 +193,10 @@ namespace APS.Migrations
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     BuyerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ItemId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CardType = table.Column<bool>(type: "bit", nullable: false),
+                    ItemId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

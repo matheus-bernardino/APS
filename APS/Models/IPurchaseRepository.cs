@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace APS.Models
 {
-	public class IPurchaseRepository
+    public interface IPurchaseRepository
 	{
 		IEnumerable<Purchase> Purchases { get; set; }
+        void SavePurchase(string userId, string bookId, Purchase purchase);
 	}
 }
