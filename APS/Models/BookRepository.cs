@@ -38,6 +38,15 @@ namespace APS.Models
             return soldBooks.AsEnumerable();
         }
 
-		public IEnumerable<Book> Books => _context.Books;
+
+        public void UpdateQuantity(string bookId)
+        {
+            Book book = (Book) _context.Books.Where(b => b.BookId == new Guid(bookId));
+            book.InStock = book.InStock - 1;
+            _context.SaveChanges();
+            
+        }
+
+        public IEnumerable<Book> Books => _context.Books;
 	}
 }

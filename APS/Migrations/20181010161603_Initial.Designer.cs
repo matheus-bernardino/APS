@@ -11,7 +11,7 @@ using System;
 namespace APS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181009015218_Initial")]
+    [Migration("20181010161603_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,7 +128,13 @@ namespace APS.Migrations
 
                     b.Property<string>("BuyerId");
 
+                    b.Property<bool>("CardType");
+
                     b.Property<string>("ItemId");
+
+                    b.Property<string>("Number");
+
+                    b.Property<string>("Street");
 
                     b.HasKey("PurchaseId");
 

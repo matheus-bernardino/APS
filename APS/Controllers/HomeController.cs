@@ -7,32 +7,37 @@ using Microsoft.AspNetCore.Mvc;
 using APS.Models;
 using APS.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace APS.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : Controller 
 	{
-		private IBookRepository _repo;
+		private readonly IBookRepository _bookRepository;
+        private readonly IPurchaseRepository _purchaseRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-		public HomeController(IBookRepository repository)
+		public HomeController(IPurchaseRepository purchaseRepository, IBookRepository bookRepository, UserManager<ApplicationUser> userManager)
 		{
-   			_repo = repository;
+            _purchaseRepository = purchaseRepository;
+   			_bookRepository = bookRepository;
+            _userManager = userManager;
 		}
 		public IActionResult Index()
 		{
-			return View("ListItem", _repo.Books.GroupBy(p => p.Category));
+			return View("ListItem", _bookRepository.Books.GroupBy(p => p.Category));
 		}
 
 		public IActionResult DisplayCategory(string SelectedCategory)
 		{
-            decimal itemsInCategory = _repo.Books.GroupBy(p => p.Category == SelectedCategory).Count();
+            decimal itemsInCategory = _bookRepository.Books.GroupBy(p => p.Category == SelectedCategory).Count();
             ViewBag.ItemsPerLine = (int) Math.Ceiling(itemsInCategory / 4);
-			return View("DisplayCategory", _repo.Books.Where(p => p.Category == SelectedCategory));
+			return View("DisplayCategory", _bookRepository.Books.Where(p => p.Category == SelectedCategory));
 		}
 
         public IActionResult DisplayBook(string SelectedBook)
         {
-            return View("DisplayBook", _repo.Books.Where(p => p.Title == SelectedBook));
+            return View("DisplayBook", _bookRepository.Books.Where(p => p.Title == SelectedBook));
         }
 
 		public IActionResult About()
@@ -58,6 +63,17 @@ namespace APS.Controllers
         public IActionResult BuyBook()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BuyBook(Purchase purchase, string bookId)
+        {
+            
+            var user = await _userManager.GetUserAsync(User);
+            _purchaseRepository.SavePurchase(user.Id, bookId, purchase);
+
+            return View("ListItem");
         }
 	}
 }

@@ -127,7 +127,13 @@ namespace APS.Migrations
 
                     b.Property<string>("BuyerId");
 
+                    b.Property<bool>("CardType");
+
                     b.Property<string>("ItemId");
+
+                    b.Property<string>("Number");
+
+                    b.Property<string>("Street");
 
                     b.HasKey("PurchaseId");
 
