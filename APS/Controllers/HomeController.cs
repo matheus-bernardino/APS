@@ -25,12 +25,12 @@ namespace APS.Controllers
 		}
 		public IActionResult Index()
 		{
-			return View("ListItem", _bookRepository.Books.GroupBy(p => p.Category));
+			return View(_bookRepository.Books.GroupBy(b => b.Category));
 		}
 
 		public IActionResult DisplayCategory(string SelectedCategory)
 		{
-            decimal itemsInCategory = _bookRepository.Books.GroupBy(p => p.Category == SelectedCategory).Count();
+            decimal itemsInCategory = _bookRepository.Books.GroupBy(b => b.Category == SelectedCategory).Count();
             ViewBag.ItemsPerLine = (int) Math.Ceiling(itemsInCategory / 4);
 			return View("DisplayCategory", _bookRepository.Books.Where(p => p.Category == SelectedCategory));
 		}
@@ -60,20 +60,20 @@ namespace APS.Controllers
 		}
 
         [HttpGet]
-        public IActionResult BuyBook()
+        public IActionResult BuyBook(string bookId)
         {
+            ViewBag.BookId = bookId;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> BuyBook(Purchase purchase, string bookId)
+        public async Task<IActionResult> BuyBook(Purchase purchase)
         {
-            
             var user = await _userManager.GetUserAsync(User);
-            _purchaseRepository.SavePurchase(user.Id, bookId, purchase);
+            _purchaseRepository.SavePurchase(user.Id, purchase.ItemId.ToString(), purchase);
 
-            return View("ListItem");
+            return RedirectToAction(nameof(Index));
         }
 	}
 }

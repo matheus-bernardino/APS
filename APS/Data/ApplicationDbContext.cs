@@ -19,6 +19,8 @@ namespace APS.Data
 		public DbSet<Purchase> Purchases { get; set; }
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
+            builder.Entity<Purchase>().HasOne(p => p.Buyer).WithMany(x => x.purchases).HasForeignKey(b => b.BuyerId);
+            
 			base.OnModelCreating(builder);
 			// Customize the ASP.NET Identity model and override the defaults if needed.
 			// For example, you can rename the ASP.NET Identity table names and more.

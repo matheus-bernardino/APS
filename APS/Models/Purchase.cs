@@ -12,8 +12,9 @@ namespace APS.Models
         public string Number { get; set; }
         public bool CardType { get; set; } = true;
         public string BuyerId { get; set; }
-		public ApplicationUser ApplicationUser { get; set; }
+		public ApplicationUser Buyer { get; set; }
         public string ItemId { get; set; }
-		public Book Book { get; set; }
+        public Guid BookId { get; set; }
+        public Book Book { get; set; }
 	}
 }

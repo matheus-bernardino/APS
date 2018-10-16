@@ -26,6 +26,7 @@ namespace APS.Controllers
         private readonly ILogger _logger;
         private readonly IApplicationUserRepository _repository;
         private readonly IBookRepository _bookRepository;
+        private readonly IPurchaseRepository _purchaseRepository;
         private readonly UrlEncoder _urlEncoder;
 
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
@@ -37,7 +38,8 @@ namespace APS.Controllers
           ILogger<ManageController> logger,
           UrlEncoder urlEncoder,
           IApplicationUserRepository repository,
-          IBookRepository bookRepository)
+          IBookRepository bookRepository,
+          IPurchaseRepository purchaseRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -46,6 +48,7 @@ namespace APS.Controllers
             _urlEncoder = urlEncoder;
             _repository = repository;
             _bookRepository = bookRepository;
+            _purchaseRepository = purchaseRepository;
         }
 
         [TempData]
@@ -513,10 +516,10 @@ namespace APS.Controllers
         }
 
         [HttpGet]
-        public  async Task<IActionResult> ListSoldBook()
+        public  async Task<IActionResult> ListBoughtBooks()
         {
             var user = await _userManager.GetUserAsync(User);
-            var books = _bookRepository.ListSoldBook(user.Id);
+            var books = _purchaseRepository.ListBoughtBooks(user.Id);
             return View(books);
         }
 		#region Helpers

@@ -11,7 +11,7 @@ using System;
 namespace APS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181010161603_Initial")]
+    [Migration("20181016230858_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,9 +122,7 @@ namespace APS.Migrations
                     b.Property<Guid>("PurchaseId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<Guid?>("BookId");
+                    b.Property<Guid>("BookId");
 
                     b.Property<string>("BuyerId");
 
@@ -138,9 +136,9 @@ namespace APS.Migrations
 
                     b.HasKey("PurchaseId");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.HasIndex("BookId");
+
+                    b.HasIndex("BuyerId");
 
                     b.ToTable("Purchases");
                 });
@@ -262,13 +260,14 @@ namespace APS.Migrations
 
             modelBuilder.Entity("APS.Models.Purchase", b =>
                 {
-                    b.HasOne("APS.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("APS.Models.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("BookId");
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("APS.Models.ApplicationUser", "Buyer")
+                        .WithMany("purchases")
+                        .HasForeignKey("BuyerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -190,9 +190,8 @@ namespace APS.Migrations
                 columns: table => new
                 {
                     PurchaseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    BuyerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CardType = table.Column<bool>(type: "bit", nullable: false),
                     ItemId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -202,16 +201,16 @@ namespace APS.Migrations
                 {
                     table.PrimaryKey("PK_Purchases", x => x.PurchaseId);
                     table.ForeignKey(
-                        name: "FK_Purchases_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Purchases_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "BookId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Purchases_AspNetUsers_BuyerId",
+                        column: x => x.BuyerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -260,14 +259,14 @@ namespace APS.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Purchases_ApplicationUserId",
-                table: "Purchases",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Purchases_BookId",
                 table: "Purchases",
                 column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Purchases_BuyerId",
+                table: "Purchases",
+                column: "BuyerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

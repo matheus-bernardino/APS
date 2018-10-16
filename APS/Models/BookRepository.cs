@@ -41,8 +41,8 @@ namespace APS.Models
 
         public void UpdateQuantity(string bookId)
         {
-            Book book = (Book) _context.Books.Where(b => b.BookId == new Guid(bookId));
-            book.InStock = book.InStock - 1;
+            var book = _context.Books.Where(b => b.BookId == new Guid(bookId));
+            book.First().InStock = book.First().InStock - 1;
             _context.SaveChanges();
             
         }
