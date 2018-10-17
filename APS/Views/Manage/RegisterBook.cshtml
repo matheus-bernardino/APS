@@ -1,37 +1,48 @@
 ﻿@model APS.Models.Book
 @{
-    ViewData["Title"] = "RegisterBook";
+    ViewData["Title"] = "Cadastrar Livro";
 }
-<h2>Cadastrar Livro</h2>
-<form asp-action="RegisterBook" enctype="multipart/form-data" method="post">
-    <input type="hidden" asp-for="SellerId" value="@ViewBag.sellerId" />
-    <fieldset>
-        <label asp-for="Title">Título</label>
-        <input asp-for="Title" placeholder="Título" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-        <br />
-        <label asp-for="Author">Autor</label>
-        <input asp-for="Author" placeholder="Autor" />
-        <span asp-validation-for="Author" class="text-danger"></span>
-        <br />
-        <label asp-for="Category">Categoria</label>
-        <input asp-for="Category" placeholder="Categoria" />
-        <span asp-validation-for="Category" class="text-danger"></span>
-        <br />
-        <label asp-for="PublishingCompany">Editora</label>
-        <input asp-for="PublishingCompany" placeholder="Editora" />
-        <span asp-validation-for="PublishingCompany" class="text-danger"></span>
-        <br />
-        <label asp-for="Value">Preço</label>
-        <input asp-for="Value" placeholder="Preço" />
-        <span asp-validation-for="Value" class="text-danger"></span>
-        <br />
-        <label asp-for="InitialStock">Quantidade</label>
-        <input asp-for="InitialStock" placeholder="Quantidade" />
-        <span asp-validation-for="InitialStock" class="text-danger"></span>
-        <input type="file" multiple name="images" accept=".jpg, .jpeg, .png" class="form-control" />
 
-    </fieldset>
-    <input type="submit">
-</form>
-
+<h4>@ViewData["Title"]</h4>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="RegisterBook" enctype="multipart/form-data" method="post">
+            <input type="hidden" asp-for="SellerId" value="@ViewBag.sellerId" />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title">Título</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author">Autor</label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category">Categoria</label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublishingCompany">Editora</label>
+                <input asp-for="PublishingCompany" class="form-control" />
+                <span asp-validation-for="PublishingCompany" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value">Preço</label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InitialStock">Quantidade</label>
+                <input asp-for="InitialStock" class="form-control" />
+                <span asp-validation-for="InitialStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="file" multiple name="images" accept=".jpg, .jpeg, .png" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-default">Salvar</button>
+        </form>
+    </div>
+</div>
