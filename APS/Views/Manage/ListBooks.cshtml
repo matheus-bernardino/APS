@@ -1,0 +1,16 @@
+﻿@model IEnumerable<APS.Models.Book>
+@{
+    ViewData["Title"] = "Alterar dados do livro";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <ul>
+            @foreach(var book in Model)
+            {
+                <li><a asp-action="UpdateBook" asp-route-bookId="@book.BookId">@book.Title</a></li>
+            }
+        </ul>        
+    </div>
+</div>
