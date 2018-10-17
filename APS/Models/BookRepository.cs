@@ -47,6 +47,12 @@ namespace APS.Models
             
         }
 
+        public void UpdateBook(Book book)
+        {
+            _context.Books.Update(book);
+            _context.SaveChanges();
+        }
+
         public IEnumerable<Book> Books => _context.Books;
 	}
 }

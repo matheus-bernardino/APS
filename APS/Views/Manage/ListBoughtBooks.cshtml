@@ -6,13 +6,13 @@
 
 <h2>ListBoughtBooks</h2>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.Street)
                 </th>
                 <th>
@@ -20,43 +20,50 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CardType)
-                </th>
-                <th>
+                </th>*@
+                @*<th>
                     @Html.DisplayNameFor(model => model.Buyer.Name)
-                </th>
+                </th>*@
                 <th>
-                    @Html.DisplayNameFor(model => model.Book.Title)
+                    @*@Html.DisplayNameFor(model => model.Book.Title)*@
+					<strong>Título</strong>
                 </th>
-            <th></th>
+				<th>
+					@*@Html.DisplayNameFor(model => model.Book.Value)*@
+					<strong>Preço</strong>
+				</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PurchaseId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CardType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Buyer.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Book.Title)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+		<tr>
+			@*<td>
+			@Html.DisplayFor(modelItem => item.PurchaseId)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Street)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Number)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.CardType)
+		</td>*@
+			@*<td>
+				@Html.DisplayFor(modelItem => item.Buyer.Name)
+			</td>*@
+			<td>
+				@Html.DisplayFor(modelItem => item.Book.Title)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Book.Value)
+			</td>
+			@*<td>
+				@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+				@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+				@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+			</td>*@
+		</tr>
 }
     </tbody>
 </table>

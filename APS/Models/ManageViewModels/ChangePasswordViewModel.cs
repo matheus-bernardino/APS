@@ -8,9 +8,9 @@ namespace APS.Models.ManageViewModels
 {
     public class ChangePasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Merda")]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "CASCAVEL atual")]
         public string OldPassword { get; set; }
 
         [Required]
@@ -20,7 +20,7 @@ namespace APS.Models.ManageViewModels
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
+        [Display(Name = "Confirmar nova senha")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 

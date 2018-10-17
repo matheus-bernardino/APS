@@ -561,13 +561,19 @@ namespace APS.Controllers
         [HttpGet]
         public IActionResult UpdateBook(string bookId)
         {
+
            var temp = _bookRepository.Books.Where(b => b.BookId == new Guid(bookId));
             Book book = temp.First();
-            return View();
+            return View(book);
         }
 
-
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateBook(Book book)
+        {
+            _bookRepository.UpdateBook(book);
+            return RedirectToAction(nameof(ListBooks));
+        }
         [HttpGet]
         public  async Task<IActionResult> ListBoughtBooks()
         {

@@ -11,5 +11,6 @@ namespace APS.Models
         void RegisterBook(Book book);
         IEnumerable<Tuple<Book, int>> ListSoldBook(string userId);
         void UpdateQuantity(string bookId);
+        void UpdateBook(Book book);
     }
 }

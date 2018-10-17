@@ -20,6 +20,7 @@ namespace APS.Models
 		public decimal Value { get; set; }
         [Required]
         public int InitialStock { get; set; }
+        [Required]
         public int InStock { get; set; }
         public string Image1 { get; set; }
         public string Image2 { get; set; }
