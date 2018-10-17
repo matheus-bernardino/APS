@@ -11,7 +11,7 @@ using System;
 namespace APS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181017125313_Initial")]
+    [Migration("20181017181859_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,7 +94,11 @@ namespace APS.Migrations
                     b.Property<string>("Category")
                         .IsRequired();
 
-                    b.Property<string>("Images");
+                    b.Property<string>("Image1");
+
+                    b.Property<string>("Image2");
+
+                    b.Property<string>("Image3");
 
                     b.Property<int>("InStock");
 

@@ -13,6 +13,9 @@ using Microsoft.Extensions.Options;
 using APS.Models;
 using APS.Models.ManageViewModels;
 using APS.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace APS.Controllers
 {
@@ -27,6 +30,7 @@ namespace APS.Controllers
         private readonly IApplicationUserRepository _repository;
         private readonly IBookRepository _bookRepository;
         private readonly IPurchaseRepository _purchaseRepository;
+        private readonly IHostingEnvironment _environment;
         private readonly UrlEncoder _urlEncoder;
 
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
@@ -39,7 +43,8 @@ namespace APS.Controllers
           UrlEncoder urlEncoder,
           IApplicationUserRepository repository,
           IBookRepository bookRepository,
-          IPurchaseRepository purchaseRepository)
+          IPurchaseRepository purchaseRepository,
+          IHostingEnvironment environment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -49,6 +54,7 @@ namespace APS.Controllers
             _repository = repository;
             _bookRepository = bookRepository;
             _purchaseRepository = purchaseRepository;
+            _environment = environment;
         }
 
         [TempData]
@@ -493,6 +499,7 @@ namespace APS.Controllers
         }
 
         [HttpGet]
+
         public async Task<IActionResult> RegisterBook()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -502,10 +509,46 @@ namespace APS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult RegisterBook(Book model)
-        {   
+        public IActionResult RegisterBook(Book model, List<IFormFile> images)
+        {
+            for(int i = 0; i < images.Count(); i++) {
+
+                if (i == 0)
+                {
+                    model.Image1 = SaveImage(images[i]);
+                }
+                else if (i == 1)
+                {
+                    model.Image2 = SaveImage(images[i]);
+                }
+                else
+                {
+                    model.Image3 = SaveImage(images[i]);
+                }
+            }
             _bookRepository.RegisterBook(model);
             return View(nameof(Index));
+        }
+
+        public string SaveImage(IFormFile image)
+        {
+            string path = _environment.WebRootPath + @"\images\livros\";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (image != null && image.Length > 0)
+            {
+                if (image.Length > 0)
+                {
+                    using (var fileStream = new FileStream(Path.Combine(path, image.FileName), FileMode.Create, FileAccess.Write))
+                    {
+                        image.CopyTo(fileStream);
+                    }
+                    return @"\images\livros\" + image.FileName;
+                }
+            }
+            return null;
         }
 
         [HttpGet]

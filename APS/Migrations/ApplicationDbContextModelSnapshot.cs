@@ -93,7 +93,11 @@ namespace APS.Migrations
                     b.Property<string>("Category")
                         .IsRequired();
 
-                    b.Property<string>("Images");
+                    b.Property<string>("Image1");
+
+                    b.Property<string>("Image2");
+
+                    b.Property<string>("Image3");
 
                     b.Property<int>("InStock");
 
