@@ -552,11 +552,21 @@ namespace APS.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateBook()
+        public async Task<IActionResult> ListBooks()
         {
             var user = await _userManager.GetUserAsync(User);
             return View(_bookRepository.Books.Where(p => p.SellerId == user.Id));
         }
+
+        [HttpGet]
+        public IActionResult UpdateBook(string bookId)
+        {
+           var temp = _bookRepository.Books.Where(b => b.BookId == new Guid(bookId));
+            Book book = temp.First();
+            return View();
+        }
+
+
 
         [HttpGet]
         public  async Task<IActionResult> ListBoughtBooks()
