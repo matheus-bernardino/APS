@@ -515,15 +515,15 @@ namespace APS.Controllers
 
                 if (i == 0)
                 {
-                    model.Image1 = SaveImage(images[i]);
+                    model.Image1 = _bookRepository.SaveImage(images[i]);
                 }
                 else if (i == 1)
                 {
-                    model.Image2 = SaveImage(images[i]);
+                    model.Image2 = _bookRepository.SaveImage(images[i]);
                 }
                 else
                 {
-                    model.Image3 = SaveImage(images[i]);
+                    model.Image3 = _bookRepository.SaveImage(images[i]);
                 }
             }
             _bookRepository.RegisterBook(model);
@@ -569,17 +569,24 @@ namespace APS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateBook(Book book)
+        public IActionResult UpdateBook(Book model, IFormFile image1, IFormFile image2, IFormFile image3)
         {
-            _bookRepository.UpdateBook(book);
+            string img1, img2, img3;
+            img1 = _bookRepository.SaveImage(image1);
+            img2 = _bookRepository.SaveImage(image2);
+            img3 = _bookRepository.SaveImage(image3);
+            model.Image1 = img1;
+            model.Image2 = img2;
+            model.Image3 = img3;
+            _bookRepository.UpdateBook(model);
             return RedirectToAction(nameof(ListBooks));
         }
         [HttpGet]
         public  async Task<IActionResult> ListBoughtBooks()
         {
             var user = await _userManager.GetUserAsync(User);
-            var books = _purchaseRepository.ListBoughtBooks(user.Id);
-            return View(books);
+            var model = _purchaseRepository.ListBoughtBooks(user.Id);
+            return View(model);
         }
 		#region Helpers
 

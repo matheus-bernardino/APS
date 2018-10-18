@@ -1,6 +1,9 @@
 ﻿using APS.Data;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,10 +12,12 @@ namespace APS.Models
 	public class BookRepository : IBookRepository
 	{
 		private ApplicationDbContext _context;
+        private readonly IHostingEnvironment _environment;
 
-		public BookRepository(ApplicationDbContext context)
+		public BookRepository(ApplicationDbContext context, IHostingEnvironment environment)
 		{
 			_context = context;
+            _environment = environment;
 		}
 
         public void RegisterBook(Book book)
@@ -51,6 +56,27 @@ namespace APS.Models
         {
             _context.Books.Update(book);
             _context.SaveChanges();
+        }
+
+        public string SaveImage(IFormFile image)
+        {
+            string path = _environment.WebRootPath + @"\images\livros\";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (image != null && image.Length > 0)
+            {
+                if (image.Length > 0)
+                {
+                    using (var fileStream = new FileStream(Path.Combine(path, image.FileName), FileMode.Create, FileAccess.Write))
+                    {
+                        image.CopyTo(fileStream);
+                    }
+                    return @"\images\livros\" + image.FileName;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<Book> Books => _context.Books;
