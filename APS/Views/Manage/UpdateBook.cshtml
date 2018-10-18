@@ -1,106 +1,114 @@
 ﻿@model APS.Models.Book
 
 @{
-    ViewData["Title"] = "Updatebook";
+    ViewData["Title"] = "Atualizar Livro";
 }
 
-<h2>Updatebook</h2>
+<h4>@ViewData["Title"]</h4>
 
-<h4>Book</h4>
-<hr />
+@*<h4>Book</h4>
+<hr />*@
 <div class="row">
-    <div class="col-md-4">
-		<form asp-action="Updatebook" enctype="multipart/form-data" method="post">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group">
-				@*<label asp-for="BookId" class="control-label"></label>*@
-				<input type="hidden" asp-for="BookId" class="form-control" />
-				<span asp-validation-for="BookId" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Title" class="control-label"></label>
-				<input asp-for="Title" class="form-control" />
-				<span asp-validation-for="Title" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Author" class="control-label"></label>
-				<input asp-for="Author" class="form-control" />
-				<span asp-validation-for="Author" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="PublishingCompany" class="control-label"></label>
-				<input asp-for="PublishingCompany" class="form-control" />
-				<span asp-validation-for="PublishingCompany" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Category" class="control-label"></label>
-				<input asp-for="Category" class="form-control" />
-				<span asp-validation-for="Category" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Value" class="control-label"></label>
-				<input asp-for="Value" class="form-control" />
-				<span asp-validation-for="Value" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="InitialStock" class="control-label"></label>
-				<input asp-for="InitialStock" class="form-control" />
-				<span asp-validation-for="InitialStock" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="InStock" class="control-label"></label>
-				<input asp-for="InStock" class="form-control" />
-				<span asp-validation-for="InStock" class="text-danger"></span>
-			</div>
-			@*<div class="form-group">
-				<label asp-for="Image1" class="control-label"></label>
-				<input asp-for="Image1" class="form-control" />
-				<span asp-validation-for="Image1" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Image2" class="control-label"></label>
-				<input asp-for="Image2" class="form-control" />
-				<span asp-validation-for="Image2" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Image3" class="control-label"></label>
-				<input asp-for="Image3" class="form-control" />
-				<span asp-validation-for="Image3" class="text-danger"></span>
+    <div class="col-md-12">
+        <form asp-action="Updatebook" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="BookId" class="control-label"></label>*@
+                <input type="hidden" asp-for="BookId" class="form-control" />
+                <span asp-validation-for="BookId" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label asp-for="PublishingCompany" class="control-label"></label>
+                    <input asp-for="PublishingCompany" class="form-control" />
+                    <span asp-validation-for="PublishingCompany" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label asp-for="Category" class="control-label"></label>
+                    <input asp-for="Category" class="form-control" />
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label asp-for="Value" class="control-label"></label>
+                    <input asp-for="Value" class="form-control" />
+                    <span asp-validation-for="Value" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label asp-for="InitialStock" class="control-label"></label>
+                    <input asp-for="InitialStock" class="form-control" />
+                    <span asp-validation-for="InitialStock" class="text-danger"></span>
+                </div>
 
-			</div>*@
-			<div class="form-group">
-			    <label>Imagem 1</label>
-			    <input type="file" name="image1" accept=".jpg, .jpeg, .png" class="form-control" />
-		    </div>
-		    <div class="form-group">
-			    <label>Imagem 2</label>
-			    <input type="file" name="image2" accept=".jpg, .jpeg, .png" class="form-control" />
-		    </div>
-		    <div class="form-group">
-			    <label>Imagem 3</label>
-			    <input type="file" name="image3" accept=".jpg, .jpeg, .png" class="form-control" />
-		    </div>  
-			<div class="form-group">
-				@*<label asp-for="SellerId" class="control-label"></label>*@
-				<input type="hidden" asp-for="SellerId" value="@Model.SellerId" class="form-control" />
-				<span asp-validation-for="SellerId" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<div class="checkbox">
-					<label>
-						<input asp-for="BookStatus" /> @Html.DisplayNameFor(model => model.BookStatus)
-					</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<input type="submit" value="Save" class="btn btn-default" />
-			</div>
-		</form>
+                <div class="col-md-4 form-group">
+                    <label asp-for="InStock" class="control-label"></label>
+                    <input asp-for="InStock" class="form-control" />
+                    <span asp-validation-for="InStock" class="text-danger"></span>
+                </div>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="Image1" class="control-label"></label>
+            <input asp-for="Image1" class="form-control" />
+            <span asp-validation-for="Image1" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image2" class="control-label"></label>
+            <input asp-for="Image2" class="form-control" />
+            <span asp-validation-for="Image2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image3" class="control-label"></label>
+            <input asp-for="Image3" class="form-control" />
+            <span asp-validation-for="Image3" class="text-danger"></span>
+
+        </div>*@
+            <div class="form-group">
+                <label>Imagem 1</label>
+                <input type="file" name="image1" accept=".jpg, .jpeg, .png" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Imagem 2</label>
+                <input type="file" name="image2" accept=".jpg, .jpeg, .png" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Imagem 3</label>
+                <input type="file" name="image3" accept=".jpg, .jpeg, .png" class="form-control" />
+            </div>
+            <div class="form-group">
+                @*<label asp-for="SellerId" class="control-label"></label>*@
+                <input type="hidden" asp-for="SellerId" value="@Model.SellerId" class="form-control" />
+                <span asp-validation-for="SellerId" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+        <div class="checkbox">
+            <label>*@
+            <input type="hidden" asp-for="BookStatus" /> @*@Html.DisplayNameFor(model => model.BookStatus)*@
+            @*</label>
+            </div>
+        </div>*@
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <input class="text-danger" type="submit" value="Save" class="btn btn-default" />
+                </div>
+                <div class="col-md-6">
+                    <a asp-action="Index">Voltar Para Sua Conta</a>
+                </div>
+            </div>
+        </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
