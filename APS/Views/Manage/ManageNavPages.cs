@@ -15,6 +15,8 @@ namespace APS.Views.Manage
 
 		public static string ChangePassword => "ChangePassword";
 
+        public static string Deactivate => "Deactivate";
+
 		public static string ExternalLogins => "ExternalLogins";
 
 		public static string TwoFactorAuthentication => "TwoFactorAuthentication";
@@ -26,6 +28,8 @@ namespace APS.Views.Manage
 		public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
 
 		public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
+
+        public static string DeactivateNavClass(ViewContext viewContext) => PageNavClass(viewContext, Deactivate);
 
 		public static string PageNavClass(ViewContext viewContext, string page)
 		{

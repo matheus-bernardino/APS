@@ -28,15 +28,15 @@ namespace APS.Models
             _context.SaveChanges();
         }
 
-        public IEnumerable<Tuple<Book, int>> ListSoldBook(string userId)
+        public IEnumerable<Tuple<Book, int?>> ListSoldBook(string userId)
         {
-            List<Tuple<Book, int>> soldBooks = new List<Tuple<Book, int>>();
+            List<Tuple<Book, int?>> soldBooks = new List<Tuple<Book, int?>>();
             var books = _context.Books.Where(book => book.SellerId == userId);
             foreach(var book in books)
             {
                 if(book.InitialStock - book.InStock > 0)
                 {
-                    Tuple<Book, int> soldBook = new Tuple<Book, int>(book, book.InitialStock - book.InStock);
+                    Tuple<Book, int?> soldBook = new Tuple<Book, int?>(book, book.InitialStock - book.InStock);
                     soldBooks.Append(soldBook);
                 }
             }
@@ -48,6 +48,7 @@ namespace APS.Models
         {
             var book = _context.Books.Where(b => b.BookId == new Guid(bookId));
             book.First().InStock = book.First().InStock - 1;
+            if (book.First().InStock == 0) book.First().BookStatus = false;
             _context.SaveChanges();
             
         }
@@ -77,6 +78,13 @@ namespace APS.Models
                 }
             }
             return null;
+        }
+
+        public void DeleteBook(string bookId)
+        {
+            var book = _context.Books.Where(b => b.BookId == new Guid(bookId));
+            book.First().BookStatus = false;
+            _context.SaveChanges();
         }
 
         public IEnumerable<Book> Books => _context.Books;

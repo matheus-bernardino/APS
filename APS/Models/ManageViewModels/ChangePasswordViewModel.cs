@@ -8,20 +8,20 @@ namespace APS.Models.ManageViewModels
 {
     public class ChangePasswordViewModel
     {
-        [Required(ErrorMessage = "Merda")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [DataType(DataType.Password)]
-        [Display(Name = "CASCAVEL atual")]
+        [Display(Name = "Senha atual")]
         public string OldPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage ="Campo obrigatório")]
+        [StringLength(100, ErrorMessage = "A {0} precisa ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nova senha")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirmar nova senha")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "As senhas não são iguais.")]
         public string ConfirmPassword { get; set; }
 
         public string StatusMessage { get; set; }

@@ -18,14 +18,14 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label>Rua</label>
+                            <label asp-for="Street">Rua</label>
                             <input asp-for="Street" class="form-control" />
                             <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>Numero</label>
+                            <label asp-for="Number">Numero</label>
                             <input asp-for="Number" class="form-control" />
                             <span class="text-danger"></span>
                         </div>
@@ -34,8 +34,8 @@
                 <hr>
                 <h4>Dados do cartão</h4>
                 <div class="row" style="text-align: center">
-                    <label class="radio-inline"><input @*asp-for="CardType"*@ type="radio" name="card">Cartão de Crédito</label>
-                    <label class="radio-inline"><input @*asp-for="CardType"*@ type="radio" name="card">Cartão de Débito</label>
+                    <label class="radio-inline"><input type="radio" name="card">Cartão de Crédito</label>
+                    <label class="radio-inline"><input type="radio" name="card">Cartão de Débito</label>
 
                 </div>
                 <br>
@@ -44,14 +44,12 @@
                         <div class="form-group">
                             <label>Número do cartão</label>
                             <input class="form-control" />
-                            <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Código de seguança</label>
                             <input class="form-control" />
-                            <span class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -60,7 +58,6 @@
                         <div class="form-group">
                             <label>Nome impresso no cartão</label>
                             <input class="form-control" />
-                            <span class="text-danger"></span>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ using System;
 namespace APS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181018024831_Initial")]
+    [Migration("20181019024952_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,12 +87,14 @@ namespace APS.Migrations
                     b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Author")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<bool>("BookStatus");
 
                     b.Property<string>("Category")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("Image1");
 
@@ -105,12 +107,14 @@ namespace APS.Migrations
                     b.Property<int>("InitialStock");
 
                     b.Property<string>("PublishingCompany")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("SellerId");
 
                     b.Property<string>("Title")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<decimal>("Value");
 

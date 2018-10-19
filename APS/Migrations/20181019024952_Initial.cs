@@ -163,17 +163,17 @@ namespace APS.Migrations
                 {
                     BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     BookStatus = table.Column<bool>(type: "bit", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Image1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InStock = table.Column<int>(type: "int", nullable: false),
                     InitialStock = table.Column<int>(type: "int", nullable: false),
-                    PublishingCompany = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PublishingCompany = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     SellerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Value = table.Column<decimal>(type: "decimal(18, 2)", nullable: false)
                 },
                 constraints: table =>

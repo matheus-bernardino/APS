@@ -86,12 +86,14 @@ namespace APS.Migrations
                     b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Author")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<bool>("BookStatus");
 
                     b.Property<string>("Category")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("Image1");
 
@@ -104,12 +106,14 @@ namespace APS.Migrations
                     b.Property<int>("InitialStock");
 
                     b.Property<string>("PublishingCompany")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("SellerId");
 
                     b.Property<string>("Title")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<decimal>("Value");
 

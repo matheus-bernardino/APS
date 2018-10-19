@@ -8,6 +8,7 @@ using APS.Models;
 using APS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using APS.Models.HomeViewModels;
 
 namespace APS.Controllers
 {
@@ -25,14 +26,15 @@ namespace APS.Controllers
 		}
 		public IActionResult Index()
 		{
-			return View(_bookRepository.Books.GroupBy(b => b.Category));
+            var model = _bookRepository.Books.Where(b => b.BookStatus == true);
+			return View(model.GroupBy(b => b.Category));
 		}
 
 		public IActionResult DisplayCategory(string SelectedCategory)
 		{
-            decimal itemsInCategory = _bookRepository.Books.GroupBy(b => b.Category == SelectedCategory).Count();
+            decimal itemsInCategory = _bookRepository.Books.GroupBy(b => b.Category == SelectedCategory && b.BookStatus == true).Count();
             ViewBag.ItemsPerLine = (int) Math.Ceiling(itemsInCategory / 4);
-			return View("DisplayCategory", _bookRepository.Books.Where(p => p.Category == SelectedCategory));
+			return View("DisplayCategory", _bookRepository.Books.Where(b => b.Category == SelectedCategory && b.BookStatus == true));
 		}
 
         public IActionResult DisplayBook(string SelectedBook)
@@ -70,8 +72,13 @@ namespace APS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> BuyBook(Purchase purchase)
         {
-            var user = await _userManager.GetUserAsync(User);
-            _purchaseRepository.SavePurchase(user.Id, purchase.ItemId.ToString(), purchase);
+            
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                _purchaseRepository.SavePurchase(user.Id, purchase.ItemId.ToString(), purchase);
+                
+            }
 
             return RedirectToAction(nameof(Index));
         }

@@ -482,20 +482,24 @@ namespace APS.Controllers
         [HttpGet]
         public IActionResult Deactivate()
         {
-            return View();
+            var model = new DeactivateViewModel();
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Deactivate(Deactivate model)
+        public async Task<IActionResult> Deactivate(DeactivateViewModel model)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (await _userManager.CheckPasswordAsync(user, model.Password))
+            if (ModelState.IsValid)
             {
-                _repository.DeactivateUser(new Guid(user.Id));
+                var user = await _userManager.GetUserAsync(User);
+                if (await _userManager.CheckPasswordAsync(user, model.Password))
+                {
+                    _repository.DeactivateUser(new Guid(user.Id));
+                }
             }
 
-            return View(nameof(Index));
+            return View(nameof(Deactivate));
         }
 
         [HttpGet]
@@ -511,7 +515,8 @@ namespace APS.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult RegisterBook(Book model, List<IFormFile> images)
         {
-            for(int i = 0; i < images.Count(); i++) {
+            for (int i = 0; i < images.Count(); i++)
+            {
 
                 if (i == 0)
                 {
@@ -521,41 +526,27 @@ namespace APS.Controllers
                 {
                     model.Image2 = _bookRepository.SaveImage(images[i]);
                 }
-                else
+                else if(i == 2)
                 {
                     model.Image3 = _bookRepository.SaveImage(images[i]);
                 }
             }
-            _bookRepository.RegisterBook(model);
-            return View(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                _bookRepository.RegisterBook(model);
+            }
+            return View(nameof(RegisterBook));
         }
 
-        public string SaveImage(IFormFile image)
-        {
-            string path = _environment.WebRootPath + @"\images\livros\";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            if (image != null && image.Length > 0)
-            {
-                if (image.Length > 0)
-                {
-                    using (var fileStream = new FileStream(Path.Combine(path, image.FileName), FileMode.Create, FileAccess.Write))
-                    {
-                        image.CopyTo(fileStream);
-                    }
-                    return @"\images\livros\" + image.FileName;
-                }
-            }
-            return null;
-        }
+       
 
         [HttpGet]
         public async Task<IActionResult> ListBooks()
         {
             var user = await _userManager.GetUserAsync(User);
-            return View(_bookRepository.Books.Where(p => p.SellerId == user.Id));
+            var model = _bookRepository.Books.Where(b => b.SellerId == user.Id && b.BookStatus == true);
+            model.Count();
+            return View("ListBooks2", model);
         }
 
         [HttpGet]
@@ -582,11 +573,35 @@ namespace APS.Controllers
             return RedirectToAction(nameof(ListBooks));
         }
         [HttpGet]
-        public  async Task<IActionResult> ListBoughtBooks()
+        public async Task<IActionResult> ListBoughtBooks()
         {
             var user = await _userManager.GetUserAsync(User);
             var model = _purchaseRepository.ListBoughtBooks(user.Id);
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteBook(string bookId)
+        {
+            ViewBag.book = bookId;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteBook(DeleteBookViewModel model)
+        {
+            //if (ModelState.IsValid)
+            //{
+            //    var user = await _userManager.GetUserAsync(User);
+            //    if (await _userManager.CheckPasswordAsync(user, model.Password))
+            //    {
+            //        _bookRepository.DeleteBook(model.BookID);
+            //    }
+
+            //}
+            _bookRepository.DeleteBook(model.BookID);
+            return RedirectToAction(nameof(ListBooks));
         }
 		#region Helpers
 

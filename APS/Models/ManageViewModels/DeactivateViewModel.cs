@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APS.Models
+namespace APS.Models.ManageViewModels
 {
-    public class Deactivate
+    public class DeactivateViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Password { get; set; }
     }
 }
