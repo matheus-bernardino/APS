@@ -506,8 +506,7 @@ namespace APS.Controllers
 
         public async Task<IActionResult> RegisterBook()
         {
-            var user = await _userManager.GetUserAsync(User);
-            ViewBag.sellerId = user.Id;
+            
             return View();
         }
 
@@ -533,6 +532,7 @@ namespace APS.Controllers
             }
             if (ModelState.IsValid)
             {
+                model.SellerId = _userManager.GetUserId(User);
                 _bookRepository.RegisterBook(model);
             }
             return View(nameof(RegisterBook));
@@ -580,11 +580,29 @@ namespace APS.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult ListBoughtBooks(string purchaseId, string rating)
+        {
+            var id = purchaseId;
+            _purchaseRepository.RatePurchase(purchaseId, rating);
+            return View(nameof(Index));
+        }
         [HttpGet]
         public async Task<IActionResult> ListSoldBooks() {
             var user = await _userManager.GetUserAsync(User);
-            var model = _bookRepository.ListSoldBooks(user.Id);
+            var temp = user.Id;
+            ViewBag.whatever = GetStatus();
+            var model = _purchaseRepository.ListSoldBooks(user.Id);
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ListSoldBooks(string status, string purchaseId) {
+            _purchaseRepository.UpdateStatus(status, purchaseId);
+            return View(nameof(Index));
+
         }
         [HttpGet]
         public IActionResult DeleteBook(string bookId)
@@ -645,6 +663,18 @@ namespace APS.Controllers
 				unformattedKey);
 		}
 
-		#endregion
-	}
+        private Dictionary<string, string> GetStatus()
+        {
+            return new Dictionary<string, string>
+            {
+                {"Status1", "Status1" },
+                {"Status2", "Status2" },
+                {"Status3", "Status3" },
+                {"Status4", "Status4" },
+                {"Status5", "Status5" }
+            };
+        }
+
+        #endregion
+    }
 }

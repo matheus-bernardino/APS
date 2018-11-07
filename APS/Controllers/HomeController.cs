@@ -64,6 +64,7 @@ namespace APS.Controllers
         [HttpGet]
         public IActionResult BuyBook(string bookId)
         {
+            
             ViewBag.BookId = bookId;
             return View();
         }
@@ -72,14 +73,8 @@ namespace APS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> BuyBook(Purchase purchase)
         {
-            
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.GetUserAsync(User);
-                _purchaseRepository.SavePurchase(user.Id, purchase.ItemId.ToString(), purchase);
-                
-            }
-
+            var user = await _userManager.GetUserAsync(User);
+            _purchaseRepository.SavePurchase(user.Id, purchase.ItemId.ToString(), purchase);
             return RedirectToAction(nameof(Index));
         }
 	}

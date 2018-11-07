@@ -1,4 +1,4 @@
-﻿@model IEnumerable<APS.Models.Book>
+﻿@model IEnumerable<APS.Models.Purchase>
 
 @{
     ViewData["Title"] = "ListSoldBooks";
@@ -12,96 +12,110 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.BookId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Author)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PublishingCompany)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Value)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.InitialStock)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.InStock)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image3)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BookStatus)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SellerId)
-                </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book.Title)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishingCompany)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Book.InitialStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book.Value)
+            </th>
+
+            @*<th>
+            @Html.DisplayNameFor(model => model.InStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SellerId)
+        </th>*@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.BookId)
+                @Html.DisplayFor(model => item.Book.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(model => item.Book.InitialStock)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author)
+                @Html.DisplayFor(model => item.Book.Value)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PublishingCompany)
+                <form asp-action="ListSoldBooks">
+                    <select asp-items="@new @SelectList(ViewBag.Whatever, "Key", "Value")"> </select>
+                    <input type="submit" />
+                    <input type="hidden" name="purchaseId" value="@item.PurchaseId"
+                </form>
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Value)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InitialStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image3)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SellerId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.BookId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishingCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InitialStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SellerId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
         </tr>
-}
+        }
     </tbody>
 </table>

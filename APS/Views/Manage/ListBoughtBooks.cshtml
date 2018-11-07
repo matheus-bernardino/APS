@@ -7,12 +7,12 @@
 <h4>@ViewData["Title"]</h4>
 
 @*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+        <a asp-action="Create">Create New</a>
+    </p>*@
 <table class="table">
     <thead>
         <tr>
-                @*<th>
+            @*<th>
                     @Html.DisplayNameFor(model => model.Street)
                 </th>
                 <th>
@@ -21,49 +21,68 @@
                 <th>
                     @Html.DisplayNameFor(model => model.CardType)
                 </th>*@
-                @*<th>
+            @*<th>
                     @Html.DisplayNameFor(model => model.Buyer.Name)
                 </th>*@
-                <th>
-                    @*@Html.DisplayNameFor(model => model.Book.Title)*@
-					<strong>Título</strong>
-                </th>
-				<th>
-					@*@Html.DisplayNameFor(model => model.Book.Value)*@
-					<strong>Preço</strong>
-				</th>
-        </tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Book.Title)*@
+                <strong>Título</strong>
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Book.Value)*@
+                <strong>Preço</strong>
+            </th>
+            <th>
+                Avaliação da Compra
+            </th>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-		<tr>
-			@*<td>
-			@Html.DisplayFor(modelItem => item.PurchaseId)
-		</td>
-		<td>
-			@Html.DisplayFor(modelItem => item.Street)
-		</td>
-		<td>
-			@Html.DisplayFor(modelItem => item.Number)
-		</td>
-		<td>
-			@Html.DisplayFor(modelItem => item.CardType)
-		</td>*@
-			@*<td>
-				@Html.DisplayFor(modelItem => item.Buyer.Name)
-			</td>*@
-			<td>
-				@Html.DisplayFor(modelItem => item.Book.Title)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Book.Value)
-			</td>
-			@*<td>
-				@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-				@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-				@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-			</td>*@
-		</tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.PurchaseId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Street)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CardType)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Buyer.Name)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Value)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>*@
+                <td>
+                    <form asp-action="ListBoughtBooks">
+                        <input asp-for="@item.Rating" name="rating" id="input-id" type="text" data-step="1.0" class="rating" data-size="xs" data-show-caption="false">
+                        <input asp-for="@item.Status" type="hidden" name="purchaseId" value="@item.PurchaseId" />
+                        <input type="submit" value="Salvar"/>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $("#input-id").rating({
+            'showClear': false
+        });
+        $("#input-id").val(0);
+    </script>
+}

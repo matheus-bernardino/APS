@@ -28,21 +28,20 @@ namespace APS.Models
             _context.SaveChanges();
         }
 
-        public IEnumerable<Tuple<Book, int?>> ListSoldBooks(string userId)
+        public IEnumerable<Book> ListSoldBooks(string userId)
         {
-            List<Tuple<Book, int?>> soldBooks = new List<Tuple<Book, int?>>();
+            List<Book> soldBooks = new List<Book>();
             var books = _context.Books.Where(book => book.SellerId == userId);
-            foreach(var book in books)
+            foreach (var book in books)
             {
-                if(book.InitialStock - book.InStock > 0)
+                if (book.InitialStock > book.InStock)
                 {
-                    Tuple<Book, int?> soldBook = new Tuple<Book, int?>(book, book.InitialStock - book.InStock);
-                    soldBooks.Append(soldBook);
+                    book.InitialStock -= book.InStock;
+                    soldBooks.Add(book);
                 }
             }
             return soldBooks.AsEnumerable();
         }
-
 
         public void UpdateQuantity(string bookId)
         {

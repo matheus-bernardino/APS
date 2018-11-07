@@ -101,9 +101,10 @@ namespace APS.Migrations
 
                     b.Property<string>("Image3");
 
-                    b.Property<int>("InStock");
+                    b.Property<int?>("InStock");
 
-                    b.Property<int>("InitialStock");
+                    b.Property<int?>("InitialStock")
+                        .IsRequired();
 
                     b.Property<string>("PublishingCompany")
                         .IsRequired()
@@ -115,7 +116,8 @@ namespace APS.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<decimal>("Value");
+                    b.Property<decimal?>("Value")
+                        .IsRequired();
 
                     b.HasKey("BookId");
 
@@ -137,15 +139,25 @@ namespace APS.Migrations
 
                     b.Property<string>("ItemId");
 
-                    b.Property<string>("Number");
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Street");
+                    b.Property<int>("Rating");
+
+                    b.Property<string>("SellerId");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("PurchaseId");
 
                     b.HasIndex("BookId");
 
                     b.HasIndex("BuyerId");
+
+                    b.HasIndex("SellerId");
 
                     b.ToTable("Purchases");
                 });
@@ -275,6 +287,10 @@ namespace APS.Migrations
                     b.HasOne("APS.Models.ApplicationUser", "Buyer")
                         .WithMany("purchases")
                         .HasForeignKey("BuyerId");
+
+                    b.HasOne("APS.Models.ApplicationUser", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -6,5 +6,8 @@ namespace APS.Models
 	{
         void SavePurchase(string userId, string bookId, Purchase purchase);
         IEnumerable<Purchase> ListBoughtBooks(string userId);
+        void RatePurchase(string purchaseId, string rating);
+        IEnumerable<Purchase> ListSoldBooks(string sellerId);
+        void UpdateStatus(string status, string purchaseId);
 	}
 }

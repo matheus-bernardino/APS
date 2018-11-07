@@ -9,7 +9,7 @@ namespace APS.Models
     {
         IEnumerable<Book> Books { get; }
         void RegisterBook(Book book);
-        IEnumerable<Tuple<Book, int?>> ListSoldBooks(string userId);
+        IEnumerable<Book> ListSoldBooks(string userId);
         void UpdateQuantity(string bookId);
         void UpdateBook(Book book);
         string SaveImage(IFormFile image);

@@ -169,7 +169,7 @@ namespace APS.Migrations
                     Image1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InStock = table.Column<int>(type: "int", nullable: false),
+                    InStock = table.Column<int>(type: "int", nullable: true),
                     InitialStock = table.Column<int>(type: "int", nullable: false),
                     PublishingCompany = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     SellerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -196,8 +196,10 @@ namespace APS.Migrations
                     BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CardType = table.Column<bool>(type: "bit", nullable: false),
                     ItemId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Number = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    SellerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -211,6 +213,12 @@ namespace APS.Migrations
                     table.ForeignKey(
                         name: "FK_Purchases_AspNetUsers_BuyerId",
                         column: x => x.BuyerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Purchases_AspNetUsers_SellerId",
+                        column: x => x.SellerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -269,6 +277,11 @@ namespace APS.Migrations
                 name: "IX_Purchases_BuyerId",
                 table: "Purchases",
                 column: "BuyerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Purchases_SellerId",
+                table: "Purchases",
+                column: "SellerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
