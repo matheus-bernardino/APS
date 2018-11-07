@@ -581,6 +581,12 @@ namespace APS.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ListSoldBooks() {
+            var user = await _userManager.GetUserAsync(User);
+            var model = _bookRepository.ListSoldBooks(user.Id);
+            return View(model);
+        }
+        [HttpGet]
         public IActionResult DeleteBook(string bookId)
         {
             ViewBag.book = bookId;

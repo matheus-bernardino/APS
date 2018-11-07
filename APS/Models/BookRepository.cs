@@ -28,7 +28,7 @@ namespace APS.Models
             _context.SaveChanges();
         }
 
-        public IEnumerable<Tuple<Book, int?>> ListSoldBook(string userId)
+        public IEnumerable<Tuple<Book, int?>> ListSoldBooks(string userId)
         {
             List<Tuple<Book, int?>> soldBooks = new List<Tuple<Book, int?>>();
             var books = _context.Books.Where(book => book.SellerId == userId);
