@@ -603,6 +603,18 @@ namespace APS.Controllers
             _purchaseRepository.UpdateStatus(status, purchaseId);
             return View(nameof(Index));
 
+
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> fgh(string status, string purchaseId)
+        {
+            _purchaseRepository.UpdateStatus(status, purchaseId);
+            return View(nameof(Index));
+
         }
         [HttpGet]
         public IActionResult DeleteBook(string bookId)
