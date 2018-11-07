@@ -66,9 +66,9 @@
             </td>
             <td>
                 <form asp-action="ListSoldBooks">
-                    <select asp-items="@new @SelectList(ViewBag.Whatever, "Key", "Value")"> </select>
+                    <select name="status" asp-for="@item.Status" asp-items="@new @SelectList(ViewBag.Whatever, "Key", "Value")"> </select>
                     <input type="submit" />
-                    <input type="hidden" name="purchaseId" value="@item.PurchaseId"
+                    <input type="hidden" name="purchaseId" value="@item.PurchaseId" />
                 </form>
             </td>
             @*<td>

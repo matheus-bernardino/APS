@@ -147,6 +147,8 @@ namespace APS.Migrations
 
                     b.Property<string>("SellerId");
 
+                    b.Property<string>("Status");
+
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasMaxLength(50);

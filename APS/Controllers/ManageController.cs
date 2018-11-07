@@ -599,12 +599,10 @@ namespace APS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ListSoldBooks(string status, string purchaseId) {
+        public IActionResult ListSoldBooks(string status, string purchaseId) {
+            var temp = status;
             _purchaseRepository.UpdateStatus(status, purchaseId);
             return View(nameof(Index));
-
-
-
         }
 
 
