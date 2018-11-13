@@ -605,15 +605,6 @@ namespace APS.Controllers
             return View(nameof(Index));
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> fgh(string status, string purchaseId)
-        {
-            _purchaseRepository.UpdateStatus(status, purchaseId);
-            return View(nameof(Index));
-
-        }
         [HttpGet]
         public IActionResult DeleteBook(string bookId)
         {
@@ -677,11 +668,9 @@ namespace APS.Controllers
         {
             return new Dictionary<string, string>
             {
-                {"Status1", "Status1" },
-                {"Status2", "Status2" },
-                {"Status3", "Status3" },
-                {"Status4", "Status4" },
-                {"Status5", "Status5" }
+                {"O seu pedido foi entregue ao transportador", "O seu pedido foi entregue ao transportador" },
+                {"O seu pedido está a caminho do seu endereço", "O seu pedido está a caminho do seu endereço" },
+                {"O seu pedido foi entregue", "O seu pedido foi entregue" }
             };
         }
 
