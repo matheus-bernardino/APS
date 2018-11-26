@@ -39,7 +39,7 @@ namespace APS.Controllers
 
         public IActionResult DisplayBook(string SelectedBook)
         {
-            return View("DisplayBook", _bookRepository.Books.Where(p => p.Title == SelectedBook));
+            return View("DisplayBook", _bookRepository.Books.Where(p => p.BookId == new Guid(SelectedBook)));
         }
 
 		public IActionResult About()
